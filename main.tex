@@ -1,0 +1,116 @@
+\documentclass{article}
+
+% page layout
+\usepackage[letterpaper, textwidth=125mm, textheight=230mm]{geometry}
+\usepackage{setspace}
+\setstretch{1.08}
+\sloppy\sloppypar\raggedbottom\frenchspacing
+
+% list management
+\usepackage{enumitem}
+\setlist{itemsep=0.0ex}
+\setlist[enumerate]{label=\textsl{(\alph*)}}
+
+% problem typesetting -- THIS IS SO INSANE
+\usepackage{amsmath, amsthm}
+\makeatletter
+\def\th@definition{%
+  \thm@notefont{}% same as heading font
+  \normalfont % body font
+}
+\makeatother
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\@thm}{\thm@headpunct{.}}{\thm@headpunct{:}}{}{}
+\makeatother
+\theoremstyle{definition}
+\newcommand{\problemname}{Problem}
+\newtheorem{problem}{\problemname}
+\newcommand{\probref}[1]{\problemname~\ref{#1}}
+\theoremstyle{remark}
+\newcommand{\notename}{Note}
+\newtheorem{note}{\notename}[problem]
+\newcommand{\noteref}[1]{\textit{\notename}~\ref{#1}}
+
+% math macros
+\newcommand{\dd}{\mathrm{d}}
+
+\begin{document}
+\section*{Crowded-field and confusion problem set}
+\noindent
+\textit{by} \textbf{David W. Hogg}
+
+\medskip\noindent
+There are some disagreements between Hogg and Casey about what is and isn't possible in modeling crowded fields.
+I (Hogg) am talking out of my ass; this problem set is designed to make my conjectures explicit, and to test them.
+
+\begin{problem}[power-law flux distributions]
+In terms of \emph{apparent flux} $S$, sources tend to be drawn from power-laws of the form
+\begin{align}
+    \frac{\dd\ln n}{\dd\ln S} = A - \alpha\,\ln\frac{S}{S_0} ~,
+\end{align}
+where $A$ is a log amplitude, $\alpha$ is a power law exponent, and $S_0$ is a characteristic flux.
+Write code to draw flux values $S$ from the implied probability distribution, and demonstrate by making plots that your code is correct.
+Your code should take as input the power-law exponent $\alpha$, a flux interval $[S_{\min}, S_{\max}]$ flux in which to work, to and the number $n$ of stars you want returned in that interval.
+
+Now what exponent $\alpha$ do you expect for bright stars in the nearby Galaxy?
+Make the assumption that stars uniformly fill three-dimensional space and that the luminosity distance and volume elements are trivially Euclidean.
+
+What exponent $\alpha$ do you expect for the stars in a globular cluster, at the faint end, roughly?
+
+How do your answers transform if you ask about the log number per \emph{magnitude} instead of log flux?
+\end{problem}
+
+\begin{problem}[naive detectability of an isolated star]\label{prob:naive}
+Imagine that you have a background-limited image taken with an ideal instrument consisting of a square grid of identical pixels.
+Background-limited, here, means that every pixel has a noise contribution that doesn't depend significantly on the sources that contribute to that pixel's intensity.
+Imagine that the pixel-convolved point-spread function (PRF) in this image is precisely Gaussian and has a full width at half maximum (FWHM) $w=3.0$\,pixels.
+Let's imagine that we took an image that contains, within its field of view, exactly one unresolved star of flux $S$, and the star is nowhere near the edge of the imaging field of view.
+Finally, assume that there is a white (uncorrelated, iid) noise contribution to every pixel with value $\sigma=1.$ (in whatever units).
+Assume that there is perfect and uniform detector sensitivity.
+At what flux $S_5$ is this star measured at $5$-sigma?
+Equivalently, what is the expected uncertainty $\sigma_S$ on the brightness of this star?
+
+Give your answers in terms of the noise level $\sigma$ and the PRF FWHM $w$.
+That is, I gave values for $\sigma$ and $w$ but give your answers symbolically.
+Get as precise or as approximate as you like; discuss the subtle issues.
+
+Extra credit: What is the expected uncertainty on the \emph{position} (within the image, in pixels) of the star?
+Give your answer in terms of $S$, $\sigma$, and $w$.
+\end{problem}
+
+\begin{note}
+The pixel-convolved point-spread function, or, in astronomer parlance, PRF, is the thing that can be purely \emph{sampled} (that is, not \emph{integrated}) at the pixel-center locations.
+\end{note}
+
+\begin{problem}[Generate crowded fields]
+Make a $100\times 100$ pixel grid and fill it with stars.
+Here are the requirements:
+Generate stellar fluxes $S$ with the power law $\alpha=1$ (the barely diverging, barely Olbers-paradox case).
+Generate stellar positions uniformly in the image, but generate in a larger region, so the stars extend naturally beyond the edges of the image.
+Generate stars in the flux interval $[S_{\min},S_{\max}]=[0.003\,S_5, 3.0\,S_5]$ where $S_5$ is the flux level you computed in \probref{prob:naive}.
+That is, generate stars down to extremely low fluxes such that the faintest would be ``detected'' at the 0.015-sigma level (of course they won't be detected).
+Generate enough stars that there are of order 300 stars at true fluxes $S>S_5$ within the image.
+Make a synthetic image using the PRF stated in \probref{prob:naive} and add uniform white noise as required by \probref{prob:naive}.
+Keep (don't delete) the true catalog that went into the image!
+Deliver this image and this catalog, and code that can generate arbitrary numbers of new examples.
+\end{problem}
+
+\begin{note}
+Why $300$? Because that corresponds to about 30 beams per source.
+\end{note}
+
+\begin{note}
+You will have to generate a \emph{fuck ton} of stars to meet the requirements of this problem.
+\end{note}
+
+\begin{problem}
+Use whatever standard astrophysical code you would use to detect stars in the generated image.
+Use the best (frequentist, standard) crowded-field code to which you have access; don't skimp here.
+Ask the code to deliver all stars down to the flux level $S_5$ you computed in \probref{prob:naive}.
+Document your choices.
+Compare this catalog to the expectations you generated in \probref{prob:naive}.
+Comment.
+\end{problem}
+
+\end{document}
