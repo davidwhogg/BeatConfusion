@@ -150,7 +150,7 @@ Once you have this likelihood function and it is executable, then you have a for
 Let's go!
 \end{note}
 
-\begin{problem}[maximum-likelihood catalog]\label{prob:lfcatalog}
+\begin{problem}[maximum-likelihood catalog]\label{prob:mlcatalog}
 Choose one of the images you generated in \probref{prob:simulate} as your ``data.''
 By being extremely and outrageously clever, figure out how to make the maximum-likelihood catalog and maximum-likelihood sky level for this image.
 That is, optimize the full likelihood function.
@@ -174,6 +174,7 @@ Would that work?
 
 \begin{note}
 I conjecture that maximum-likelihood will not give better answers than standard practice.
+After all, standard practice is an approximation to maximum-likelihood.
 \end{note}
 
 \begin{problem}[sources outside the image]
@@ -192,7 +193,7 @@ Now combine this log-prior function with your log-likelihood function from \prob
 This log-posterior function takes in a catalog and sky level, and returns either (if the log prior is negative infinity) negative infinity or else a finite value that is offset by a constant from the true log posterior probability density.
 
 Now figure out how to sample the shit out of this with some kind of MCMC method to develop fully marginalized posterior beliefs about the catalog.
-Are the resulting posterior beliefs for individual sources more accurate than what you got with traditional methods in \probref{prob:trad} or with your maximum-likelihood method in \probref{prob:lfcatalog}?
+Are the resulting posterior beliefs for individual sources more accurate than what you got with traditional methods in \probref{prob:trad} or with your maximum-likelihood method in \probref{prob:mlcatalog}?
 
 You will be considered to have solved this problem if you can solve it for tiny image patches centered on only the $S>S_5$ stars.
 That is, you don't have to successfully solve all of Bayesian inference simultaneously over the full image footprint to be seen as solving this problem.
