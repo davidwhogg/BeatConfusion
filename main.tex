@@ -177,12 +177,21 @@ I conjecture that maximum-likelihood will not give better answers than standard 
 After all, standard practice is an approximation to maximum-likelihood.
 \end{note}
 
+\begin{problem}[fully profiled catalog]
+Once you have solved \probref{prob:mlcatalog} it would be possible to get \emph{profile} likelihoods for the $S>S_5$ sources, profiling over the fainter (or, really \emph{all} other) sources.
+That would be incredible, and should be part of the paper you draft as part of the solution to \probref{prob:mlcatalog}.
+\end{problem}
+
+\begin{note}
+The fully profiled catalog might be just as valuable as the fully marginalized catalog discussed below in \probref{prob:fullposterior}.
+\end{note}
+
 \begin{problem}[sources outside the image]
 A side quest is to show that your model or your likelihood optimization \emph{requires}, statistically, sources outside the image footprint.
 If you succeed, draft an April Fools' paper about this subject.
 \end{problem}
 
-\begin{problem}[full marginalization in catalog space]
+\begin{problem}[full marginalization in catalog space]\label{prob:fullposterior}
 Write log-prior-pdf functions that describe our expectations for the positions and fluxes of the catalog sources.
 For positions, use uniforms (that extend sufficiently outside the image to deal with edge stars).
 For fluxes, use the \emph{exactly correct} power-law distribution with \emph{exactly correct} minimum and maximum fluxes that you used in \probref{prob:simulate} to create the data in the first place.
