@@ -162,9 +162,10 @@ If you achieve anything here, draft a paper about it for the refereed literature
 
 Compare your results to the traditional results you got in \probref{prob:trad}.
 Is your maximum-likelihood method any better than standard practice?
+If so, in what specific ways?
 
 You will be considered to have solved this problem even if you only solve it for tiny image patches centered on the $S>S_5$ stars.
-That is, you don't have to successfully optimize everything to be deemed successful here.
+That is, you don't have to successfully optimize everything to be deemed successful here (and, indeed, to be publishable in the refereed literature).
 But you \emph{do} need to consider catalog sources outside the target image patches.
 \end{problem}
 
@@ -180,13 +181,14 @@ I conjecture that maximum-likelihood will not give better answers than standard 
 After all, standard practice is an approximation to maximum-likelihood.
 \end{note}
 
-\begin{problem}[fully profiled catalog]
+\begin{problem}[fully profiled catalog]\label{prob:fullprofile}
 Once you have solved \probref{prob:mlcatalog} it would be possible to get \emph{profile} likelihoods for the $S>S_5$ sources, profiling over the fainter (or, really \emph{all} other) sources.
 That would be incredible, and should be part of the paper you draft as part of the solution to \probref{prob:mlcatalog}.
 \end{problem}
 
 \begin{note}
 The fully profiled catalog might be just as valuable as the fully marginalized catalog you will obtain below in \probref{prob:fullposterior}.
+In particular, it might deliver much better uncertainty estimates (more representative of the actual errors than what is returned by standard practice) on the well-detected stars.
 \end{note}
 
 \begin{problem}[sources outside the image]
@@ -210,12 +212,14 @@ Are the resulting posterior beliefs for individual sources more accurate than wh
 You will be considered to have solved this problem if you can solve it for tiny image patches centered on only the $S>S_5$ stars.
 That is, you don't have to successfully solve all of Bayesian inference simultaneously over the full image footprint to be seen as solving this problem.
 Even if you solve this very limited version of the problem, draft a paper for the refereed literature about it.
+Don't forget, though, that your model for a patch must include stars that are outside the bounds of the patch.
 \end{problem}
 
 \begin{note}
 I conjecture that the result of the Bayesian marginalization will not be better than the traditional results found in \probref{prob:trad}.
 If they are, this is very big news.
 The results are publishable either way.
+I further conjecture that the thing that will be better, here and in \probref{prob:fullprofile}, than what one gets by standard practice, will be the \emph{uncertainty estimates} for the well-detected (bright) stars.
 \end{note}
 
 \begin{note}
